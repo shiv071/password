@@ -1,42 +1,43 @@
-#include <iostream>
+#include<iostream>
 #include <cstdlib>
 #include <ctime>
 using namespace std;
-static const char alphnum[] = "0123456789"
-                              "!@#$%^&*"
-                              "ABCDEFGHIJKLMNOPQRSTUVWXYZ"
-                              "abcdefghijklmnopqrstuvwxyz";
-int strLen = sizeof(alphnum) - 1;
-char GenRand()
-{
-    return alphnum[rand() % strLen];
-}
+
 int main()
 {
-    int n=6, c = 0, s = 0;
-    srand(time(0));
+    srand(time(0)); //srand is used to intialise the random numbers
+
+    /*time is used so that it can get the time from system and change the
+      output in every test. If we don't declare time then it will return
+      same result in every test.*/
+
+    string password = " ";
+    int max;
+    string keys = "0123456789"
+                  "!@#$%^&*"
+                  "ABCDEFGHIJKLMNOPQRSTUVWXYZ"
+                  "abcdefghijklmnopqrstuvwxyz";
+
+    /*Now, we will set the length of our password and in the for loop we 
+      declare the main logic */
     
-    cout << "Your Password is: ";
-N:
-    char C;
-    string D;
-    for (int z = 0; z < 6; z++)
+    cout<<endl;
+    cout << "Enter the length of password - ";
+    cin >> max;
+    cout<<endl;
+
+    for (int i = 1; i <= max; i++)
     {
-        C = GenRand();
-        D += C;
-        if (isdigit(C))
-        {
-            c++;
-        }
-        if (C == '!' || C == '@' || C == '$' || C == '%' || C == '^' || C == '&' || C == '*' || C == '#')
-        {
-            s++;
-        }
+        password = password + keys[rand() % keys.size()];
+        
+        /*We used "rand() % keys.size()" to get the random character from keys 
+          and and then we divided it with keys.size() so that we can get the  
+          any-one random character from keys*/
     }
-    if (n > 2 && (s == 0 || c == 0))
-    {
-        goto N;
-    }
-    cout << D;
+
+    //Let's Go.........
+
+    cout << "Your password is - " << password << endl;
+    cout<<endl;
     return 0;
 }
